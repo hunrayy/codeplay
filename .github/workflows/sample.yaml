@@ -1,0 +1,28 @@
+name: "create simple image"
+on:
+  push:
+    branches:
+    - master
+jobs:
+  build_image:
+    runs-on: ubuntu-latest
+    steps:
+    - name: "List the directory"
+      run: |
+        ls
+
+    - name: "checkout from dir"
+      uses: actions/checkout@v4
+
+    - name: "Build the image"
+      run: |
+        docker build -t henryokiyi/codeplay:1 .
+
+    # - name: "login to Dokcer Hub"
+    #   run: |
+    #     docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    # - name: "Push image to Docker Hub"
+    #   run: |
+    #     docker push henryokiyi/codeplay
+      
