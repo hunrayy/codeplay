@@ -24,7 +24,7 @@ jobs:
 
     - name: "Push image to Docker Hub"
       run: |
-        docker push henryokiyi/codeplay
+        docker push henryokiyi/codeplay:1
 
     - name: "SSH into the EC2 instance"
       run : |
