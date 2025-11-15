@@ -28,10 +28,11 @@ jobs:
 
     - name: "SSH into the EC2 instance"
       run : |
-        echo "${{ secrets.SSH_KEY }}" >> codeplaykey.pem
+      
+        printf "%s" "${{ secrets.SSH_KEY }}" > codeplaykey.pem
         sudo chmod 400 codeplaykey.pem
         ssh -i "codeplaykey.pem" -o StrictHostKeyChecking=no ubuntu@ec2-13-49-246-111.eu-north-1.compute.amazonaws.com
       
 
 
-     
+      # echo "${{ secrets.SSH_KEY }}" >> codeplaykey.pem
