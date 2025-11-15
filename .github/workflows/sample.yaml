@@ -18,11 +18,20 @@ jobs:
       run: |
         docker build -t henryokiyi/codeplay:1 .
 
-    # - name: "login to Dokcer Hub"
-    #   run: |
-    #     docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: "login to Dokcer Hub"
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-    # - name: "Push image to Docker Hub"
-    #   run: |
-    #     docker push henryokiyi/codeplay
+    - name: "Push image to Docker Hub"
+      run: |
+        docker push henryokiyi/codeplay
+
+    - name: "SSH into the EC2 instance"
+      run : |
+        echo "${{ secrets.SSH_KEY }}" >> codeplaykey.pem
+        sudo chmod 400 codeplaykey.pem
+        ssh -i "codeplaykey.pem" -o StrictHostKeyChecking=no ubuntu@ec2-13-49-246-111.eu-north-1.compute.amazonaws.com
       
+
+
+     
